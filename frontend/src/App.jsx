@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetchTasks();
@@ -12,7 +14,7 @@ function App() {
 
   const fetchTasks = async () => {
     axios
-      .get("http://localhost:8000/tasks")
+      .get(`${API_URL}/tasks`)
       .then((res) => setTasks(res.data))
       .catch((err) => console.error("Error fetching tasks:", err));
   };
@@ -20,7 +22,7 @@ function App() {
   const createTask = async (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/tasks", { title, description })
+      .post(`${API_URL}/tasks`, { title, description }) // corrigido aqui
       .then(() => {
         setTitle("");
         setDescription("");
@@ -31,14 +33,14 @@ function App() {
 
   const deleteTask = async (id) => {
     axios
-      .delete(`http://localhost:8000/tasks/${id}`)
+      .delete(`${API_URL}/tasks/${id}`) // usando API_URL
       .then(() => fetchTasks())
       .catch((err) => console.error("Error deleting task:", err));
   };
 
   const toggleTask = (id, completed) => {
     axios
-      .put(`http://localhost:8000/tasks/${id}`, { completed: !completed })
+      .put(`${API_URL}/tasks/${id}`, { completed: !completed }) // usando API_URL
       .then(() => fetchTasks())
       .catch((err) => console.error("Error updating task:", err));
   };
