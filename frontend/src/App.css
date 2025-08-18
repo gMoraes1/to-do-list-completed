@@ -15,6 +15,13 @@
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+  body {
+    min-height: 100vh;          /* ocupa a altura inteira da tela */
+    display: flex;              /* ativa flexbox */
+    justify-content: center;    /* centraliza horizontalmente */
+    align-items: center;        /* centraliza verticalmente */
+    background: #ececec;        /* opcional, só pra dar contraste */
+  }
   
   /* Título */
   h1 {
