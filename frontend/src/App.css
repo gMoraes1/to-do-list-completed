@@ -1,4 +1,4 @@
-/* Reset básico */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,6 @@
     font-family: Arial, Helvetica, sans-serif;
   }
   
-  /* Container geral */
   .container {
     max-width: 600px;
     margin: 50px auto;
@@ -16,21 +15,21 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   body {
-    min-height: 100vh;          /* ocupa a altura inteira da tela */
-    display: flex;              /* ativa flexbox */
-    justify-content: center;    /* centraliza horizontalmente */
-    align-items: center;        /* centraliza verticalmente */
-    background: #ececec;        /* opcional, só pra dar contraste */
+    min-height: 100vh;         
+    display: flex;             
+    justify-content: center;   
+    align-items: center;       
+    background: #ececec;       
   }
   
-  /* Título */
+
   h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
   }
   
-  /* Formulário */
+
   form {
     display: flex;
     flex-direction: column;
@@ -61,7 +60,7 @@
     background: #45a049;
   }
   
-  /* Lista de tarefas */
+
   .task-list {
     list-style: none;
     display: flex;
@@ -84,14 +83,14 @@
     background: #f1f1f1;
   }
   
-  /* Quando estiver completa */
+
   .task-list li.completed {
     text-decoration: line-through;
     color: gray;
     background: #e0e0e0;
   }
   
-  /* Ações */
+
   .actions {
     display: flex;
     gap: 10px;
