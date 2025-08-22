@@ -99,7 +99,7 @@ function App() {
                   toggleTask(task.id, task.completed, newTitle, newDescription);
                 }           
               }}>
-
+                Editar
               </button>
             </div>
           </li>
