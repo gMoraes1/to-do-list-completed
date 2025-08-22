@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ececec;
+    background: #080808;
   }
   
   .container {
@@ -20,6 +20,8 @@
     background: #f9f9f9;
     border-radius: 16px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+    position: relative;
+    z-index: 2;
   }
   
   h1 {
@@ -57,6 +59,11 @@
     outline: none;
   }
   
+  form button,
+  .actions button {
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  
   form button {
     background: #4caf50;
     color: white;
@@ -67,7 +74,17 @@
     font-weight: bold;
     font-size: 1em;
     letter-spacing: 0.5px;
-    transition: background 0.3s;
+  }
+  
+  form button:hover,
+  .actions button:hover {
+    transform: scale(1.07);
+    box-shadow: 0 2px 12px rgba(76,175,80,0.12);
+  }
+  
+  form button:active,
+  .actions button:active {
+    transform: scale(0.97);
   }
   
   form button:hover {
@@ -182,3 +199,42 @@
     .task-list li strong { font-size: 1em; }
     .task-list li { font-size: 0.95em; }
   }
+
+  .bubbles {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bubble {
+    position: absolute;
+    bottom: -100px;
+    width: 40px; height: 40px;
+    background: rgba(76,175,80,0.13);
+    border-radius: 50%;
+    animation: rise 14s linear infinite;
+    opacity: 0.5;
+  }
+  
+  /* Cada bolha com posição e velocidade diferente */
+  .bubble1 { left: 10%; animation-duration: 12s; }
+  .bubble2 { left: 20%; animation-duration: 8s; }
+  .bubble3 { left: 30%; animation-duration: 10s; }
+  .bubble4 { left: 40%; animation-duration: 7s; }
+  .bubble5 { left: 50%; animation-duration: 13s; }
+  .bubble6 { left: 60%; animation-duration: 9s; }
+  .bubble7 { left: 70%; animation-duration: 11s; }
+  .bubble8 { left: 80%; animation-duration: 6s; }
+  .bubble9 { left: 90%; animation-duration: 15s; }
+  .bubble10 { left: 97%; animation-duration: 17s; }
+  
+  @keyframes rise {
+    0%   { bottom: -100px; opacity: 0.4; transform: scale(1) rotate(0deg);}
+    50%  { opacity: 0.7; transform: scale(1.2) rotate(20deg);}
+    100% { bottom: 100vh; opacity: 0; transform: scale(0.9) rotate(360deg);}
+  }  
