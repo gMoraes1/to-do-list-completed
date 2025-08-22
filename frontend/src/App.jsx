@@ -17,17 +17,17 @@ function App() {
       .get(`${API_URL}/tasks`)
       .then((res) => {
         console.log("API response:", res.data);
-        // Se for objeto com chave 'tasks'
         if (Array.isArray(res.data)) {
           setTasks(res.data);
         } else if (Array.isArray(res.data.tasks)) {
           setTasks(res.data.tasks);
         } else {
-          setTasks([]); // fallback para array vazio
+          setTasks([]);
         }
       })
       .catch((err) => console.error("Error fetching tasks:", err));
   };
+
   
 
   const createTask = async (e) => {
@@ -91,6 +91,15 @@ function App() {
                 onClick={() => deleteTask(task.id)}
               >
                 Deletar
+              </button>
+              <button className="edit" onClick={() => {
+                const newTitle = prompt("Editar título:", task.title);
+                const newDescription = prompt("Editar descrição:", task.description);
+                if (newTitle !== null && newDescription !== null) {
+                  toggleTask(task.id, task.completed, newTitle, newDescription);
+                }           
+              }}>
+
               </button>
             </div>
           </li>
