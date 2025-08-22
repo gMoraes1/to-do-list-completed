@@ -6,7 +6,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchTasks();
@@ -15,9 +15,20 @@ function App() {
   const fetchTasks = async () => {
     axios
       .get(`${API_URL}/tasks`)
-      .then((res) => setTasks(res.data))
+      .then((res) => {
+        console.log("API response:", res.data);
+        // Se for objeto com chave 'tasks'
+        if (Array.isArray(res.data)) {
+          setTasks(res.data);
+        } else if (Array.isArray(res.data.tasks)) {
+          setTasks(res.data.tasks);
+        } else {
+          setTasks([]); // fallback para array vazio
+        }
+      })
       .catch((err) => console.error("Error fetching tasks:", err));
   };
+  
 
   const createTask = async (e) => {
     e.preventDefault();
@@ -38,9 +49,9 @@ function App() {
       .catch((err) => console.error("Error deleting task:", err));
   };
 
-  const toggleTask = (id, completed) => {
+  const toggleTask = (id, completed, title, description) => {
     axios
-      .put(`${API_URL}/tasks/${id}`, { completed: !completed }) // usando API_URL
+      .put(`${API_URL}/tasks/${id}`, {title, description, completed: !completed }) // usando API_URL
       .then(() => fetchTasks())
       .catch((err) => console.error("Error updating task:", err));
   };
@@ -72,7 +83,7 @@ function App() {
               <strong>{task.title}</strong> - {task.description}
             </div>
             <div className="actions">
-              <button onClick={() => toggleTask(task.id, task.completed)}>
+              <button onClick={() => toggleTask(task.id, task.completed, task.title, task.description)}>
                 {task.completed ? "Desmarcar" : "Completar"}
               </button>
               <button
