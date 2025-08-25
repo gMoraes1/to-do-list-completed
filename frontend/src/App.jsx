@@ -57,6 +57,10 @@ function App() {
   };
 
   return (
+    <div className="bubbles">
+    {[...Array(100)].map((_, i) => (
+        <span key={i} className={`bubble bubble${i + 1}`}></span>
+    ))}
     <div className="container">
       <h1>To-Do List ✅</h1>
       <form onSubmit={createTask}>
@@ -105,6 +109,7 @@ function App() {
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 }

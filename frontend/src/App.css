@@ -91,7 +91,7 @@
     background: #388e3c;
   }
   
-  /* Lista de tasks */
+ 
   .task-list {
     margin-top: 14px;
     display: flex;
@@ -101,7 +101,7 @@
     padding: 0;
   }
   
-  /* Cada task como card */
+ 
   .task-list li {
     background: #fff;
     border-radius: 10px;
@@ -118,7 +118,7 @@
     background: #f5f7fa;
   }
   
-  /* Task concluída */
+  
   .task-list li.completed {
     text-decoration: line-through;
     color: #888;
@@ -126,7 +126,7 @@
     box-shadow: none;
   }
   
-  /* Título da task */
+
   .task-list li strong {
     font-weight: bold;
     font-size: 1.15em;
@@ -135,14 +135,14 @@
     letter-spacing: 0.5px;
   }
   
-  /* Descrição */
+  
   .task-list li {
     word-break: break-word;
     font-size: 0.97em;
     color: #666;
   }
   
-  /* Botões de ação */
+  
   .actions {
     display: flex;
     gap: 9px;
@@ -187,7 +187,7 @@
     background: #ffea00;
   }
   
-  /* Responsividade leve */
+  
   @media (max-width: 570px) {
     .container {
       max-width: 95vw;
@@ -200,17 +200,16 @@
     .task-list li { font-size: 0.95em; }
   }
 
-  .bubbles {
+   .bubbles {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
     z-index: 0;
     overflow: hidden;
-    pointer-events: none;
     display:flex;
     justify-content: center;
     align-items: center;
-  }
-  
+  } 
+
   .bubble {
     position: absolute;
     bottom: -100px;
@@ -221,7 +220,6 @@
     opacity: 0.5;
   }
   
-  /* Cada bolha com posição e velocidade diferente */
   .bubble1 { left: 10%; animation-duration: 12s; }
   .bubble2 { left: 20%; animation-duration: 8s; }
   .bubble3 { left: 30%; animation-duration: 10s; }

@@ -74,7 +74,7 @@
     background: #388e3c;
   }
   
-  /* Lista de tasks */
+
   .task-list {
     margin-top: 14px;
     display: flex;
@@ -82,7 +82,7 @@
     gap: 18px;
   }
   
-  /* Cada task como card */
+
   .task-item, .task-list li {
     background: #fff;
     border-radius: 10px;
@@ -99,15 +99,15 @@
     background: #f5f7fa;
   }
   
-  /* Task concluída */
+
   .task-list li.completed, .task-item.completed {
-    text-decoration: line-through;
+    text-decoration: line-through;  
     color: #888;
     background: #e0e0e0;
     box-shadow: none;
   }
   
-  /* Título da task */
+
   .task-title {
     font-weight: bold;
     font-size: 1.15em;
@@ -116,7 +116,7 @@
     letter-spacing: 0.5px;
   }
   
-  /* Descrição */
+
   .task-desc {
     color: #666;
     font-size: 0.97em;
@@ -124,7 +124,7 @@
     word-break: break-word;
   }
   
-  /* Botões de ação */
+
   .actions, .task-actions {
     display: flex;
     gap: 9px;
@@ -168,7 +168,7 @@
     background: #ffea00;
   }
   
-  /* Responsividade leve */
+
   @media (max-width: 570px) {
     .container {
       max-width: 95vw;
