@@ -10,7 +10,7 @@ function EditModal({ isOpen, onClose, task, onSave }) {
       setDescription(task.description);
     }
   }, [task]);
-
+  
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {

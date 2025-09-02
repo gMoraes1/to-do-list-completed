@@ -6,7 +6,6 @@ function TaskList({ tasks, onEdit, onDelete, onToggleComplete }) {
   const [selectedTask, setSelectedTask] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
   const handleEditClick = (task) => {
     setSelectedTask(task);
     setIsModalOpen(true);
@@ -20,7 +19,7 @@ function TaskList({ tasks, onEdit, onDelete, onToggleComplete }) {
     <>
       {!tasks.length ? (
         <p>Nenhuma task cadastrada ainda.</p>
-      ) : (
+    ) : (
         <ul className="task-list">
           {tasks.map((task) => (
             <TaskItem

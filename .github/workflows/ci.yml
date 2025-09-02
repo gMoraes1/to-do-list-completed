@@ -1,0 +1,111 @@
+name: Run Pytest for Backend
+
+on:
+  push:
+    paths:
+      - backend/**
+      - .github/workflows/ci.yml
+  pull_request:
+    paths:
+      - backend/**
+      - .github/workflows/ci.yml  
+
+  jobs:
+    test:
+      runs-on: ubuntu-latest
+
+      services:
+        postgres:
+          image: postgres:15
+          env:
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: test_db  name: CI Pipeline - Backend & Frontend
+
+on:
+  push:
+    paths:
+      - backend/**
+      - frontend/**
+      - .github/workflows/ci.yml
+  pull_request:
+    paths:
+      - backend/**
+      - frontend/**
+      - .github/workflows/ci.yml
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U user -d test_db"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run migrations (if aplicável)
+        run: |
+          cd backend
+          alembic upgrade head || echo "No migrations to run"
+
+      - name: Run backend tests
+        run: |
+          cd backend
+          pytest --maxfail=1 --disable-warnings -q
+
+  frontend-tests:
+    runs-on: ubuntu-latest
+    needs: backend-tests  
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Run frontend tests
+        run: |
+          cd frontend
+          npm test -- --watchAll=false
+
+          ports:
+            - 5432:5432
+          options: >-
+            --health-cmd="pg_isready -U user -d test_db"
+            --health-interval=10s 
+            --health-timeout=5s
+            --health-retries=5
+
+            
